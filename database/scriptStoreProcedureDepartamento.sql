@@ -1,6 +1,6 @@
 USE [AvaliacaoIELDb]
 GO
-/****** Object:  StoredProcedure [dbo].[uspIncluirDepartamento]    Script Date: 10/04/2022 15:13:50 ******/
+/****** Object:  StoredProcedure [dbo].[uspIncluirDepartamento]    Script Date: 10/04/2022 19:16:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
