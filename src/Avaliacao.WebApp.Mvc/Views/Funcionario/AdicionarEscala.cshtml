@@ -1,0 +1,48 @@
+﻿@using Avaliacao.Domain.RH;
+@model Avaliacao.Application.ViewModels.EscalaViewModel
+@{
+    ViewData["Title"] = "Adcionar do Escala";
+}
+<h1>Cadastro de Funcionário</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdicionarEscala">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <input type="hidden" asp-for="FuncionarioId" />
+
+            <div class="form-group">
+                <label class="control-label">Dia da Semana</label>
+                <select asp-for="DiaDaSemana" class="form-control" asp-items="Html.GetEnumSelectList<DiasDaSemana>()">
+                    <option></option>
+                </select>
+                <span asp-validation-for="DiaDaSemana" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HoraInicio" class="control-label"></label>
+                <input asp-for="HoraInicio" class="form-control" />
+                <span asp-validation-for="HoraInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoraTermino" class="control-label"></label>
+                <input asp-for="HoraTermino" class="form-control" />
+                <span asp-validation-for="HoraTermino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TempoDescanso" class="control-label"></label>
+                <input asp-for="TempoDescanso" class="form-control" />
+                <span asp-validation-for="TempoDescanso" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+
+</div>

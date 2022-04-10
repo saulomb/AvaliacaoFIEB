@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Avaliacao.Application.ViewModels.FuncionarioViewModel>
+@{
+    ViewData["Title"] = "Gestão de Funcionários";
+}
+<h1>Gestão de Funcionários</h1>
+<hr />
+<div class="text-left">
+     <a class="btn btn-success" asp-action="Adicionar" asp-controller="Funcionario">Adicionar</a>
+</div>
+<div class="text-center">
+
+        <table class="table table-sm table-bordered table-hover col-md-12">
+            <thead class="table-dark">
+                <tr>
+                    <td>Id</td>
+                    <td>Nome</td>
+                    <td>Cpf</td>
+                    <td>Email</td>
+                    <td>Telefone</td>
+                    <td colspan="4">Ações</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var funcionario in Model)
+                {
+                    <tr>
+                        <td>@funcionario.Id</td>
+                        <td>@funcionario.Nome</td>
+                        <td>@funcionario.Cpf</td>
+                        <td>@funcionario.Email</td>
+                        <td>@funcionario.Telefone</td>
+                        <td>
+                            <a asp-action="Atualizar"
+                               asp-controller="Funcionario"
+                               asp-route-Id="@funcionario.Id"
+                               class="btn btn-info">
+                                <span class="fas fa-edit"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Detalhe"
+                               asp-controller="Funcionario"
+                               asp-route-Id="@funcionario.Id"
+                               class="btn btn-light">
+                                <span class="fas fa-address-book"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="DefinirEscala"
+                               asp-controller="Funcionario"
+                               asp-route-Id="@funcionario.Id"
+                               class="btn btn-dark">
+                                <span class="fas fa-calendar-check"></span>
+                            </a>
+
+                        </td>
+                        <td>
+                            <a asp-action="Remover"
+                               asp-controller="Funcionario"
+                               asp-route-Id="@funcionario.Id"
+                               class="btn btn-danger">
+                                <span class="fas fa-trash-alt"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Avaliacao.Application.ViewModels.EscalaViewModel>
+
+<table class="table table-sm table-bordered table-hover col-md-12">
+    <thead class="table-dark">
+        <tr>
+            <td>Dia da semana</td>
+            <td>Hora Inicio</td>
+            <td>Hora Termino</td>
+            <td>Tempo de Descanso</td>
+            <td>Carga Horária</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var escala in Model)
+            {
+                <tr>
+                    <td>@escala.DiaDaSemana</td>
+                    <td>@escala.HoraInicio</td>
+                    <td>@escala.HoraTermino</td>
+                    <td>@escala.TempoDescanso</td>
+                    <td>@escala.CargaHoraria</td>
+
+                </tr>
+            }
+            <tr>
+                <td colspan="4" align="right">Carga Horária Total:</td>
+                <td>@Model.Sum(e => e.CargaHoraria)</td>
+            </tr>
+
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" align="right">Nenhuma escala informada!</td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>

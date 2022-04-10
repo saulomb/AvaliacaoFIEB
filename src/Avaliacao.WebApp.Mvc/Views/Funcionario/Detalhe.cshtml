@@ -1,0 +1,87 @@
+﻿@model Avaliacao.Application.ViewModels.FuncionarioViewModel
+@{
+    ViewData["Title"] = "Detalhes do Funcionário";
+}
+<h1>Detalhe do Funcionário</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <p class="form-control">@Model.Nome</p>
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cpf" class="control-label"></label>
+            <p class="form-control">@Model.Cpf</p>
+            <span asp-validation-for="Cpf" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <p class="form-control">@Model.Email</p>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Telefone" class="control-label"></label>
+            <p class="form-control">@Model.Telefone</p>
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Habilitacao" /> @Html.DisplayNameFor(model => model.Habilitacao)
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Categoria" class="control-label"></label>
+            <p class="form-control">@Model.Categoria.Value</p>
+            <span asp-validation-for="Categoria" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Salario" class="control-label"></label>
+            <p class="form-control">@Model.SalarioFormatoMoeda</p>
+            <span asp-validation-for="Salario" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <a class="btn btn-info" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</div>
+<div class="row">
+
+    <table class="table table-sm table-bordered table-hover col-md-12">
+            <thead class="table-dark">
+                <tr>
+                    <td>Dia da semana</td>
+                    <td>Hora Inicio</td>
+                    <td>Hora Termino</td>
+                    <td>Tempo de Descanso</td>
+                    <td>Carga Horária</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var escala in Model.EscalaSemanal.OrderBy(o => o.DiaDaSemana))
+                {
+                <tr>
+                    <td>@escala.DiaDaSemana</td>
+                    <td>@escala.HoraInicio</td>
+                    <td>@escala.HoraTermino</td>
+                    <td>@escala.TempoDescanso</td>
+                    <td>@escala.CargaHoraria</td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    @*@await Component.InvokeAsync("Escala",  Model.EscalaSemanal );*@
+</div>
