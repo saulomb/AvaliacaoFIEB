@@ -26,8 +26,5 @@ namespace Avaliacao.WebApp.MVC.Services
             return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), options);
         }
 
-
-     
-
     }
 }
