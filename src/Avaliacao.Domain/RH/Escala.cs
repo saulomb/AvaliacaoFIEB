@@ -10,15 +10,37 @@ namespace Avaliacao.Domain.RH
         
         public Escala(int funcionarioId, DiasDaSemana diaDaSemana, TimeSpan horaInicio, TimeSpan horaTermino, int tempoDeDescanco)
         {
-         
+
             if (horaInicio >= horaTermino)
                 throw new DomainException("Hora de início não pode ser maior ou igual a hora de termino!");
-            
+
             if (tempoDeDescanco < 0)
                 throw new DomainException("Tempo de descanso não poder ser menor que zero!");
-            
+
 
             FuncionarioId = funcionarioId;
+            DiaDaSemana = diaDaSemana;
+            HoraInicio = horaInicio;
+            HoraTermino = horaTermino;
+            TempoDescanso = tempoDeDescanco;
+
+            if (CalculaCargaHoraria() <= 0)
+                throw new DomainException("Tempo de descanso não poder ser maior ou igual que a carga horária!");
+
+
+        }
+
+        public Escala( DiasDaSemana diaDaSemana, TimeSpan horaInicio, TimeSpan horaTermino, int tempoDeDescanco)
+        {
+
+            if (horaInicio >= horaTermino)
+                throw new DomainException("Hora de início não pode ser maior ou igual a hora de termino!");
+
+            if (tempoDeDescanco < 0)
+                throw new DomainException("Tempo de descanso não poder ser menor que zero!");
+
+
+            //FuncionarioId = funcionarioId;
             DiaDaSemana = diaDaSemana;
             HoraInicio = horaInicio;
             HoraTermino = horaTermino;

@@ -80,6 +80,11 @@ namespace Avaliacao.Domain.RH
         {
             if (EscalaDiaExsitente(escala))
                 throw new DomainException("Já existe uma escala atribuida para esse dia da semana!");
+
+            if (CalcularCargaHorariaSemanal() > 40)
+                throw new DomainException("Carga Horária não pode ser superior a 40hs");
+            
+
             _escalaSemanal.Add(escala);
         }
 
