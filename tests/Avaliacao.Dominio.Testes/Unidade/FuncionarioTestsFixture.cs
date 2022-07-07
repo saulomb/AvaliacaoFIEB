@@ -7,12 +7,12 @@ using Xunit;
 namespace Avaliacao.Dominio.Testes.Unidade
 {
 
-    [CollectionDefinition(nameof(FuncionarioEsacalaCollection))]
-    public class FuncionarioEsacalaCollection : ICollectionFixture<FuncionarioEscalaTestsFixture>
+    [CollectionDefinition(nameof(FuncionarioCollection))]
+    public class FuncionarioCollection : ICollectionFixture<FuncionarioTestsFixture>
     { }
     
     
-    public class FuncionarioEscalaTestsFixture: IDisposable
+    public class FuncionarioTestsFixture: IDisposable
     {
 
         public const int HORA_INICIAL_PADRAO = 8;

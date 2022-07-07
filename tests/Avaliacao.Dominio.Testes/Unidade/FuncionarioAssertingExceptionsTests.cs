@@ -7,15 +7,15 @@ using Xunit;
 
 namespace Avaliacao.Dominio.Testes.Unidade
 {
-   [Collection(nameof(FuncionarioEsacalaCollection))]
+   [Collection(nameof(FuncionarioCollection))]
     public class FuncionarioAssertingExceptionsTests
     {
-        //public Funcionario funcionario;
+       
         public const int HORA_INICIAL_PADRAO = 8;
 
-        private readonly FuncionarioEscalaTestsFixture _funcionarioEscalaTestsFixture;
+        private readonly FuncionarioTestsFixture _funcionarioEscalaTestsFixture;
 
-        public FuncionarioAssertingExceptionsTests(FuncionarioEscalaTestsFixture funcionarioEscalaTestsFixture)
+        public FuncionarioAssertingExceptionsTests(FuncionarioTestsFixture funcionarioEscalaTestsFixture)
         {
             _funcionarioEscalaTestsFixture = funcionarioEscalaTestsFixture;
         }
