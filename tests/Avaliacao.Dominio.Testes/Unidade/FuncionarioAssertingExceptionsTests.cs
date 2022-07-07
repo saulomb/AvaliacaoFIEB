@@ -7,15 +7,42 @@ using Xunit;
 
 namespace Avaliacao.Dominio.Testes.Unidade
 {
+   [Collection(nameof(FuncionarioEsacalaCollection))]
     public class FuncionarioAssertingExceptionsTests
     {
+        //public Funcionario funcionario;
+        public const int HORA_INICIAL_PADRAO = 8;
+
+        private readonly FuncionarioEscalaTestsFixture _funcionarioEscalaTestsFixture;
+
+        public FuncionarioAssertingExceptionsTests(FuncionarioEscalaTestsFixture funcionarioEscalaTestsFixture)
+        {
+            _funcionarioEscalaTestsFixture = funcionarioEscalaTestsFixture;
+        }
+
+        public Escala GerarEscala(DiasDaSemana dia, int cargaHoraia, int tempoDescanso = 0)
+        {
+
+            var horaFinal = HORA_INICIAL_PADRAO + cargaHoraia + tempoDescanso;
+            var escala = new Escala(dia, 
+                                new TimeSpan(8, 0, 0), 
+                                new TimeSpan(horaFinal, 0, 0),
+                                tempoDescanso);
+
+            return escala;
+        }
+        
+        
         [Fact]
         public void Escala_VerificaSeExisteParaODia_DeveRetornaErroQueJaExiste()
         {
             //Arrange
-            var funcionario = new Funcionario("Saulo Mendonça", "121212121", "saulomb@gmail.com", "9999-6666",1, 15000);
-            var escalaDaSegunda1 = new Escala(DiasDaSemana.Segunda, new TimeSpan(8, 0, 0), new TimeSpan(20, 0, 0), 2);
-            var escalaDaSegunda2 = new Escala(DiasDaSemana.Segunda, new TimeSpan(7, 0, 0), new TimeSpan(18, 0, 0), 2);
+
+            var funcionario = _funcionarioEscalaTestsFixture.GeraFuncionarioValido();
+
+            var escalaDaSegunda1 = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Segunda, 8, 2);
+            var escalaDaSegunda2 = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Segunda, 7, 1);
+
 
             funcionario.AdiconarEscala(escalaDaSegunda1);
 
@@ -30,27 +57,25 @@ namespace Avaliacao.Dominio.Testes.Unidade
         public void Escala_VerificaSeTotalHorasDasEscalasEhMaiorQue40_DeveRetornaErroQueNaoDeveSerMaiorQue40()
         {
             //Arrange
-            var funcionario = new Funcionario("Saulo Mendonça", "121212121", "saulomb@gmail.com", "9999-6666", 1, 15000);
-            //Total de 10hs
-            var escalaDaSegunda = new Escala(DiasDaSemana.Segunda, new TimeSpan(8, 0, 0), new TimeSpan(20, 0, 0), 2);
-            //Total de 9hs
-            var escalaDaTerca = new Escala(DiasDaSemana.Terca, new TimeSpan(7, 0, 0), new TimeSpan(18, 0, 0), 2);
-            //Total de 11hs
-            var escalaDaQuarta = new Escala(DiasDaSemana.Quarta, new TimeSpan(7, 0, 0), new TimeSpan(20, 0, 0), 2);
-            //Total de 13hs
-            var escalaDaQuinta = new Escala(DiasDaSemana.Quinta, new TimeSpan(7, 0, 0), new TimeSpan(22, 0, 0), 2);
-            //Total de 8hs
-            var escalaDaSexta = new Escala(DiasDaSemana.Sexta, new TimeSpan(8, 0, 0), new TimeSpan(18, 0, 0), 2);
+            var escalaSegunda = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Segunda, 10, 2);
+            var escalaTerca = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Terca, 9, 2);
+            var escalaQuarta = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Quarta, 11, 2);
+            var escalaQuinta = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Quinta, 13, 2);
 
-            funcionario.AdiconarEscala(escalaDaSegunda);
-            funcionario.AdiconarEscala(escalaDaTerca);
-            funcionario.AdiconarEscala(escalaDaQuarta);
-            funcionario.AdiconarEscala(escalaDaQuinta);
+            var escalaSexta = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Sexta, 8, 2);
+
+            var funcionario = _funcionarioEscalaTestsFixture.GeraFuncionarioValido();
+
+
+            funcionario.AdiconarEscala(escalaSegunda);
+            funcionario.AdiconarEscala(escalaTerca);
+            funcionario.AdiconarEscala(escalaQuarta);
+            funcionario.AdiconarEscala(escalaQuinta);
             
 
 
             //Act e Assert
-            Assert.Throws<DomainException>(() => funcionario.AdiconarEscala(escalaDaSexta));
+            Assert.Throws<DomainException>(() => funcionario.AdiconarEscala(escalaSexta));
 
         }
 
