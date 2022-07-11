@@ -111,6 +111,8 @@ namespace Avaliacao.Data.Mappings
            
             builder.ToTable("Funcionario");
 
+            builder.Ignore(c => c.ValidationResult);
+
         }
 
     }

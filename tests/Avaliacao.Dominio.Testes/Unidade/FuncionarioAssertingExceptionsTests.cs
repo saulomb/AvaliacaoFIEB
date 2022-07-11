@@ -33,12 +33,13 @@ namespace Avaliacao.Dominio.Testes.Unidade
         }
         
         
-        [Fact]
+        [Fact(DisplayName = "Verifica escala existente")]
+        [Trait("Funcionario", "Funcionario Exception Trait Testes")]
         public void Escala_VerificaSeExisteParaODia_DeveRetornaErroQueJaExiste()
         {
             //Arrange
 
-            var funcionario = _funcionarioEscalaTestsFixture.GeraFuncionarioValido();
+            var funcionario = _funcionarioEscalaTestsFixture.GeraFuncionarioSemEscalaValido();
 
             var escalaDaSegunda1 = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Segunda, 8, 2);
             var escalaDaSegunda2 = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Segunda, 7, 1);
@@ -53,7 +54,8 @@ namespace Avaliacao.Dominio.Testes.Unidade
         }
 
 
-        [Fact]
+        [Fact(DisplayName ="Verifica se Escala Semanal Ultrapassa 40 horas")]
+        [Trait("Funcionario", "Funcionario Exception Trait Testes")]
         public void Escala_VerificaSeTotalHorasDasEscalasEhMaiorQue40_DeveRetornaErroQueNaoDeveSerMaiorQue40()
         {
             //Arrange
@@ -64,7 +66,7 @@ namespace Avaliacao.Dominio.Testes.Unidade
 
             var escalaSexta = _funcionarioEscalaTestsFixture.GerarEscala(DiasDaSemana.Sexta, 8, 2);
 
-            var funcionario = _funcionarioEscalaTestsFixture.GeraFuncionarioValido();
+            var funcionario = _funcionarioEscalaTestsFixture.GeraFuncionarioSemEscalaValido();
 
 
             funcionario.AdiconarEscala(escalaSegunda);

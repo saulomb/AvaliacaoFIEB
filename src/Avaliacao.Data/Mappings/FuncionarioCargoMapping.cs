@@ -17,6 +17,11 @@ namespace Avaliacao.Data.Mappings
 
 
             builder.ToTable("FuncionarioCargo");
+
+            builder.Ignore(c => c.ValidationResult);
+
+
+
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Avaliacao.Data.Mappings
             //builder.Ignore(c => c.CalculaCargaHoraria());
 
             builder.ToTable("FuncionarioEscala");
+
+            builder.Ignore(c => c.ValidationResult);
         }
     }
 }
