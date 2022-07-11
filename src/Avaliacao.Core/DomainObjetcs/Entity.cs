@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 
 namespace Avaliacao.Core.DomainObjects
@@ -11,6 +12,8 @@ namespace Avaliacao.Core.DomainObjects
         {
            
         }
+
+        public ValidationResult ValidationResult { get; protected set; }
 
         #region Comparações
 

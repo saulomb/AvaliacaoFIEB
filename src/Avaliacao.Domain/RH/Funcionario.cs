@@ -1,4 +1,5 @@
 ﻿using Avaliacao.Core.DomainObjects;
+using Avaliacao.Domain.RH.Validacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,5 +112,11 @@ namespace Avaliacao.Domain.RH
            
             return carhaHorariaSemanal;
         }
+
+        //public override bool EhValido()
+        //{
+        //    ValidationResult = new FuncionarioValidacao().Validate(this);
+        //    return ValidationResult.IsValid;
+        //}
     }
 }
